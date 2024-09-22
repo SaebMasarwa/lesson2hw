@@ -1,70 +1,102 @@
 import { FunctionComponent } from "react";
 
-interface CoursesProps {
-    
-}
+interface CoursesProps {}
 
-  interface Course {
-    num: number;
-    name:string;
-    semester: string;
+interface Course {
+  num: number;
+  name: string;
+  semester: string;
 }
-const course1 = {
+let courses: Course[] = [
+  {
     num: 292100,
     name: "Java 1",
-    semester: "A"
-}
-const course2 = {
+    semester: "A",
+  },
+  {
     num: 292101,
     name: "Java 2",
-    semester: "B"
-}
-const course3 = {
+    semester: "B",
+  },
+  {
     num: 292102,
     name: "Python",
-    semester: "A"
-}
-const course4 = {
+    semester: "A",
+  },
+  {
     num: 292103,
     name: "Angular 1",
-    semester: "B"
-}
-const course5 = {
+    semester: "B",
+  },
+  {
     num: 292104,
     name: "Angular 2",
-    semester: "A"
-}
-const course6 = {
+    semester: "A",
+  },
+  {
     num: 292105,
     name: "React",
-    semester: "B"
-}
-const course7 = {
+    semester: "B",
+  },
+  {
     num: 292106,
     name: "MongoDB",
-    semester: "B"
-}
-const course8 = {
+    semester: "B",
+  },
+  {
     num: 292107,
     name: "Sql",
-    semester: "A"
-}
+    semester: "A",
+  },
+];
 
-
-const myArr: Course[] = [course1, course2, course3,course4,course5,course6,course7,course8];
+const myArr: Course[] = courses;
 
 // myArr.forEach((cktr) => {
 //     console.log(`Hi, My name is ${cktr.cktr_name},
-//     I play for ${cktr.cktr_team} and 
-//     I've already made ${cktr.cktr_runs} 
+//     I play for ${cktr.cktr_team} and
+//     I've already made ${cktr.cktr_runs}
 //     runs while representing my country.`)
 // })
 
 const Courses: FunctionComponent<CoursesProps> = () => {
-    
-    return ( <>
-        <h1>{myArr[6].name}</h1>
-    </> );
-}
- 
+  const youClicked = (courseName: string) => {
+    alert(courseName);
+  };
+
+  return (
+    <div className="d-flex ">
+      {/* Question 1 */}
+      {/* <div className="card" style={{ width: 400 }}>
+        <div className="card-body">
+          <h5 className="card-title">Course Name: {myArr[6].name}</h5>
+          <p className="card-text">Semester: {myArr[6].semester}</p>
+          <button
+            className="btn btn-primary"
+            onClick={() => youClicked(myArr[6].name)}
+          >
+            Click Me
+          </button>
+        </div>
+      </div> */}
+      {courses.length > 0
+        ? myArr.map((course) => (
+            <div className="card m-3" style={{ width: 400 }}>
+              <div className="card-body">
+                <h5 className="card-title">Course Name: {course.name}</h5>
+                <p className="card-text">Semester: {course.semester}</p>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => youClicked(course.name)}
+                >
+                  Click Me
+                </button>
+              </div>
+            </div>
+          ))
+        : " <div>No courses available</div>"}
+    </div>
+  );
+};
+
 export default Courses;
